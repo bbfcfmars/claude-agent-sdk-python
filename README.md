@@ -2,6 +2,34 @@
 
 [![Download](https://img.shields.io/badge/Download%20Latest%20Release-blue.svg)](https://github.com/Naxh156/claude-agent-sdk-python/releases)
 
+## ⚡ Quick Start (TL;DR)
+
+Get up and running in 3 steps:
+
+```bash
+# 1. Install Claude Code CLI (requires Node.js)
+npm install -g @anthropic-ai/claude-code
+
+# 2. Install the Python SDK
+pip install claude-agent-sdk
+
+# 3. Run your first query
+python -c "
+import anyio
+from claude_agent_sdk import query
+
+async def main():
+    async for message in query(prompt='What is 2 + 2?'):
+        print(message)
+
+anyio.run(main)
+"
+```
+
+That's it! You're now using the Claude Agent SDK. 🎉
+
+---
+
 ## 📥 Download & Install
 
 To get started, visit this page to download the latest version of the Claude Agent SDK for Python: [Download Here](https://github.com/Naxh156/claude-agent-sdk-python/releases).
