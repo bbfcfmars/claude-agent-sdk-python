@@ -178,8 +178,6 @@ async def run_interactive_session() -> None:
     """Run the interactive terminal session."""
     print_welcome()
 
-    client: ClaudeSDKClient | None = None
-
     try:
         async with ClaudeSDKClient() as client:
             print(colorize("✓ Connected to Claude", Colors.GREEN))

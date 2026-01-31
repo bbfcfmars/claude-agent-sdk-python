@@ -43,9 +43,8 @@ from claude_agent_sdk import (
     UserMessage,
 )
 
-# Global client and response queue
+# Global client and event loop
 client: ClaudeSDKClient | None = None
-response_queue: asyncio.Queue[str] = asyncio.Queue()
 loop: asyncio.AbstractEventLoop | None = None
 
 # Shortcodes and commands reference
@@ -615,7 +614,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
                     self._query_claude(prompt), loop
                 )
                 try:
-                    result = future.result(timeout=120)  # 2 minute timeout
+                    result = future.result(timeout=120)  # 120 seconds (2 minutes)
                     self._send_json(result)
                 except TimeoutError:
                     self._send_json({"error": "Request timed out"})
@@ -653,7 +652,10 @@ class RequestHandler(SimpleHTTPRequestHandler):
                         elif isinstance(block, ToolUseBlock):
                             response_text.append(f"[Using tool: {block.name}]")
                 elif isinstance(msg, UserMessage):
-                    for block in msg.content if isinstance(msg.content, list) else []:
+                    content_blocks = (
+                        msg.content if isinstance(msg.content, list) else []
+                    )
+                    for block in content_blocks:
                         if isinstance(block, ToolResultBlock) and block.content:
                             result_preview = str(block.content)[:200]
                             if len(str(block.content)) > 200:
