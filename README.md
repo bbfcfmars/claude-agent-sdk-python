@@ -67,6 +67,50 @@ async for message in query(prompt="Hello Claude"):
 
 For in-depth information on each feature, visit the [Claude Agent SDK documentation](https://docs.anthropic.com/en/docs/claude-code/sdk/sdk-python).
 
+## 🎨 User-Friendly Interfaces
+
+Not comfortable with the CLI? The SDK includes ready-to-use interfaces for easier interaction:
+
+### 🌐 Minimal Web UI
+
+A browser-based interface with a clean prompt field, submit button, and info panel:
+
+```bash
+python examples/minimal_web_ui.py
+```
+
+This opens a web interface at `http://localhost:8765` with:
+- **Prompt input field** - Type your questions in plain language
+- **Send button** - Click or press Enter to submit
+- **ℹ Info button** - Shows helpful commands, shortcodes, and tips
+- **Real-time responses** - See Claude's responses as they stream in
+
+### 💻 Interactive Terminal UI
+
+A colorful terminal interface with built-in help:
+
+```bash
+python examples/terminal_ui.py
+```
+
+Features:
+- **Visual styling** - Color-coded messages for easy reading
+- **Quick commands** - Type `/help` for commands, `/info` for shortcuts
+- **Shortcodes** - Use prompts like `explain <topic>` or `fix <issue>`
+- **Multi-turn conversations** - Context is preserved across messages
+
+### ⌨️ Available Shortcodes
+
+| Shortcode | Description |
+|-----------|-------------|
+| `/help` | Show available commands |
+| `/info` | Show shortcodes and tips |
+| `/clear` | Clear conversation history |
+| `explain <topic>` | Get explanations of any topic |
+| `fix <issue>` | Ask Claude to fix a bug |
+| `review <file>` | Get code review |
+| `test <code>` | Generate tests |
+
 ## 🖥️ Example Use Cases
 
 The Claude Agent SDK allows you to build applications that utilize Claude’s AI capabilities. Here are some example use cases:
